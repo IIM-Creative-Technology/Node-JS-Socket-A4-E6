@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const user = require('./user/user.js');
+const user = require('./routes/user');
 
 app.use('/user', user);
 
