@@ -1,0 +1,23 @@
+{
+  "name": "js-socket.io-iim-a4-dw2-stark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IIM-Creative-Technology/node-js-socket.io-IIM-A4-DW2-Stark.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IIM-Creative-Technology/node-js-socket.io-IIM-A4-DW2-Stark/issues"
+  },
+  "homepage": "https://github.com/IIM-Creative-Technology/node-js-socket.io-IIM-A4-DW2-Stark#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
