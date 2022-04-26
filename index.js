@@ -3,11 +3,11 @@ const express = require('express')
 const app = express()
 const port = 3000
 const client = new Client({
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-})
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 client.connect()
 
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-client.query('SELECT NOW()', (err, res) => {
+client.query('SELECT NOW ()', (err, res) => {
     console.log(err, res)
     client.end()
 })
