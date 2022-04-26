@@ -3,7 +3,7 @@
 | Resource    |                     Content                      |
 |-------------|:------------------------------------------------:|
 | Branch Type | *Current branch type<br/>Ex : feature-chore-etc* |
-| Branch Name |   *current branch name (whitout branch type)*    |
+| Branch Name |   *current branch name (without branch type)*    |
 | Ticket number |                      *xxx*                       |
 | Bug fix     |                      *Y/N*                       |
 | New feature |                      *Y/N*                       |
