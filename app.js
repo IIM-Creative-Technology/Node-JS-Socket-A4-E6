@@ -1,5 +1,6 @@
 const express = require('express');
 const { Client } = require('pg');
+const { PrismaClient } = require('@prisma/client');
 const user = require('./routes/user');
 
 const app = express();
@@ -8,6 +9,7 @@ const port = 3000;
 
 app.use('/user', user);
 
+const prisma = new PrismaClient()
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -21,9 +23,13 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-client.query('SELECT NOW ()', (err, res) => {
-    console.log(err, res);
-    client.end();
+async function main() {
+  const allUsers = await prisma.user.findMany();
+  console.log(allUsers);
+}
+
+main().catch((e) => {
+    throw e
 });
 
 app.listen(process.env.PORT || port, () => {
