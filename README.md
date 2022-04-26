@@ -2,8 +2,12 @@
 
 ## Liens
 
-- https://node-js-iim-a4-dw2-stark.herokuapp.com
-- https://node-js-iim-a4-dw2-stark-dev.herokuapp.com
+- Prod :  
+  https://node-js-iim-a4-dw2-stark.herokuapp.com
+
+
+- Pré prod :  
+  https://node-js-iim-a4-dw2-stark-dev.herokuapp.com
 
 ## Prérequis
 
@@ -57,3 +61,5 @@ DATABASE_URL=$(heroku config:get DATABASE_URL -a node-js-iim-a4-dw2-stark-dev) n
 $env:DATABASE_URL=$(heroku config:get DATABASE_URL -a node-js-iim-a4-dw2-stark-dev)
 npx prisma db push --preview-feature
 ```
+
+
