@@ -11,9 +11,9 @@ A la racine du projet :
 
 ##DB
 
-We use a postgreSQL database by elephantSQL service.
+We use a postgreSQL database by heroku service.
 
 To launch the project and enable database connection you should use this command line :
 ```
-PGUSER=****** PGHOST=tai.db.elephantsql.com PGDATABSE=tgzxtzul PGPASSWORD=***** node index.js
+DATABASE_URL=***** node index.js
 ```
