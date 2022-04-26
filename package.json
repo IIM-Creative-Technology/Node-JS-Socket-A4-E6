@@ -2,10 +2,10 @@
   "name": "js-socket.io-iim-a4-dw2-stark",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon app.js"
+    "start": "DATABASE_URL=$(heroku config:get DATABASE_URL -a node-js-iim-a4-dw2-stark-dev)  nodemon ./app/app.js"
   },
   "repository": {
     "type": "git",
