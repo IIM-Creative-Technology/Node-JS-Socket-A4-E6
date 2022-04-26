@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const AuthenticationService = require("../services/authentication/authenticationToken");
+const authService = new AuthenticationService();
 
 class AuthenticationMiddleware{
     authentication (req, res, next) {
@@ -10,9 +12,10 @@ class AuthenticationMiddleware{
             req.user = decoded;
             next();
         } catch (error) {
-            res.status(400).send("Invalid token");
+            authService.refreshJwtToken();
+            //res.status(400).send("Invalid token");
         }
     };
 }
 
-module.exports = AuthenticationMiddleware();
+module.exports = AuthenticationMiddleware;
