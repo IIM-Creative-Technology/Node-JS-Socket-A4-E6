@@ -13,7 +13,7 @@ exports.getUsers = function (req, res) {
  * @param res
  */
 exports.postUser = function (req, res) {
-  res.send("post user ");
+  res.send("post user");
 };
 /**
  * Update User from ID
