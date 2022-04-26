@@ -8,7 +8,7 @@ const port = 3000;
 app.use("/user", user);
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "./template/html/index.html");
+  res.sendFile(__dirname + "/app/template/html/index.html");
 });
 
 app.listen(process.env.PORT || port, () => {
