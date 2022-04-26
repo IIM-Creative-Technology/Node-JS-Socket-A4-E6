@@ -1,12 +1,12 @@
 # Resources
 
-| Resource    |                     Content                      |
-|-------------|:------------------------------------------------:|
-| Branch Type | *Current branch type<br/>Ex : feature-chore-etc* |
-| Branch Name |   *current branch name (without branch type)*    |
+| Resource      |                     Content                      |
+|---------------|:------------------------------------------------:|
+| Branch Type   | *Current branch type<br/>Ex : feature-chore-etc* |
+| Branch Name   |   *current branch name (without branch type)*    |
 | Ticket number |                      *xxx*                       |
-| Bug fix     |                      *Y/N*                       |
-| New feature |                      *Y/N*                       |
+| Bug fix       |                      *Y/N*                       |
+| New feature   |                      *Y/N*                       |
 
 # What does this PR do ?
 
