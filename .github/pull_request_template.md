@@ -1,8 +1,10 @@
 # Resources
-| Resource               | Content |
-|------------------------|:-------:|
-| Branche                |         |
-| Ticket number          |         |
+|Resource     |        Content        |
+|-------------|:---------------------:|
+| Branche     | *current branch name* |
+| Ticket number |         *xxx*         |
+| Bug fix     |         *Y/N*         |
+| New feature |         *Y/N*         |
 
 # What does this PR do ?
 *Add the details about what your PR do*
