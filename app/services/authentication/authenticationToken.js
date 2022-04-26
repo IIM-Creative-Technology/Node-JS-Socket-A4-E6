@@ -49,4 +49,4 @@ class AuthenticationService {
 
 }
 
-module.exports = AuthenticationService();
+module.exports = AuthenticationService;
