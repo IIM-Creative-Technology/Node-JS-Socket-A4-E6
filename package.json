@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "jest",
-    "start": "DATABASE_URL=$(heroku config:get DATABASE_URL -a node-js-iim-a4-dw2-stark-dev)  nodemon ./app/app.js"
+    "start": "DATABASE_URL=$(heroku config:get DATABASE_URL -a node-js-iim-a4-dw2-stark-dev)  nodemon ./app/app.js",
+    "migrate": "DATABASE_URL=$(heroku config:get DATABASE_URL -a node-js-iim-a4-dw2-stark-dev) npx prisma db push --preview-feature"
   },
   "repository": {
     "type": "git",
