@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,8 @@
   },
   "homepage": "https://github.com/IIM-Creative-Technology/node-js-socket.io-IIM-A4-DW2-Stark#readme",
   "dependencies": {
-    "express": "^4.17.3"
-  },
-  "devDependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
     "prettier": "2.6.2"
   }
 }
