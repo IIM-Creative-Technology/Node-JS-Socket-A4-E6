@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Tuto WebSocket avec Socket.io et NodeJS par PracticalProgramming.fr</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tuto WebSocket avec Socket.io et NodeJS par PracticalProgramming.fr</title>
 </head>
 
 <body>
 <H1>Hello</H1>
 <ul id="list">
-    <li>Premier élément</li>
+  <li>Premier élément</li>
 </ul>
 <div>
-    <span id="information"></span>
-    <h3>Chat</h3>
-    <label for="chat-input">
-
-    </label><input id="chat-input" type="text">
-    <button onclick="handleMessageSend()">Envoyer</button>
-
+  <span id="information"></span>
+  <h3>Chat</h3>
+  <label for="chat-input"></label>
+  <input id="chat-input" type="text" onchange="FocusManager()">
+  <button onclick="handleMessageSend()">Envoyer</button>
 </div>
 
 
@@ -26,21 +24,30 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
 
-    const socket = io();
+  const socket = io();
 
-    function handleclick(){
-        socket.name = document.getElementById("oui").value
-    }
+  function handleclick() {
+    socket.name = document.getElementById("oui").value;
+  }
 
-    socket.on("connect", () => {
-        console.log(socket)
-        socket.emit('joinRoom', "oui");
+  socket.on("connect", () => {
+    console.log(socket);
+    socket.emit("joinRoom", "oui");
+  });
+
+  function handleMessageSend() {
+    socket.emit("room1 chat message", { socketID: socket.id, msg: document.getElementById("chat-input").value });
+  }
+
+  socket.on("room callback", callback => {
+    console.log(callback);
+  });
+
+  function FocusManager() {
+    document.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") handleMessageSend();
     });
-
-    function handleMessageSend(){
-        socket.emit("room1 chat message", document.getElementById("chat-input").value)
-    }
-
+  }
 
 
 </script>

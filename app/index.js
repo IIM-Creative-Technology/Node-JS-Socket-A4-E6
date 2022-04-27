@@ -10,15 +10,12 @@ io.on("connection", (socket) => {
   console.log(`Connecté au client ${socket.id}`)
   socket.on("joinRoom",  () => {
     socket.join("room1");
-    io.sockets.in("room1").emit('message','Someone joined the room');
+    io.sockets.in("room1").emit('message','Someone joined the room'); //Todo recover message client
     // io.sockets.adapter.rooms Lister les rooms
-    console.log(io.sockets.adapter.rooms);
   })
-
-  socket.on('room1 chat message', function (msg) {
-    io.to("room1").emit('chat message', {msg: msg, room: "room1"});
+  socket.on('room1 chat message', function (values) {
+    io.to("room1").emit('room callback', {...values, room: "room1"});
   });
-
 });
 
 index.use("/user", user);
