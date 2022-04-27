@@ -1,8 +1,8 @@
 const express = require("express");
-const app = express();
+const index = express();
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const httpServer = createServer(app);
+const httpServer = createServer(index);
 const io = new Server(httpServer);
 const user = require("./routes/user");
 
@@ -12,18 +12,18 @@ io.on("connection", (socket) => {
     socket.join("room1");
     io.sockets.in("room1").emit('message','Someone joined the room');
     // io.sockets.adapter.rooms Lister les rooms
+    console.log(io.sockets.adapter.rooms);
   })
 
   socket.on('room1 chat message', function (msg) {
-    console.log(msg)
-    io.to("room1").emit('chat message', msg);
+    io.to("room1").emit('chat message', {msg: msg, room: "room1"});
   });
 
 });
 
-app.use("/user", user);
+index.use("/user", user);
 
-app.get("/socket", (req, res) => {
+index.get("/socket", (req, res) => {
   res.sendFile(__dirname + "/socketio/index.html");
 });
 
