@@ -12,8 +12,9 @@
     <li>Premier élément</li>
 </ul>
 
-<label for="oui">Label</label>
-<input type="text" id="oui" onchange="handleChange(this)">
+<label for="oui">Choisisez un nom</label>
+<input type="text" id="oui">
+<button onclick="handleclick()">Rejoindre une room</button>
 
 
 <!-- CREATION SOCKET -->
@@ -22,13 +23,19 @@
 
     const socket = io();
 
-    function handleChange({value}) {
-        socket.to("some room").emit("hello", "value");
+    function handleclick(){
+        socket.name = document.getElementById("oui").value
     }
 
     socket.on("connect", () => {
-        console.log(socket); // x8WIv7-mJelg7on_ALbx
+        console.log(socket)
+        socket.emit('joinRoom', "oui");
     });
+
+
+    socket.on('message', (socket) => {
+        console.log(socket)
+    })
 
 
 </script>
