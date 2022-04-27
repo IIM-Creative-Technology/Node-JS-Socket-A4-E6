@@ -20,9 +20,10 @@
 <div>
     <span id="information"></span>
     <h3>Chat</h3>
-    <textarea>
+    <label for="chat-input">
 
-    </textarea>
+    </label><input id="chat-input" type="text">
+    <button onclick="handleMessageSend()">Envoyer</button>
 
 </div>
 
@@ -42,10 +43,10 @@
         socket.emit('joinRoom', "oui");
     });
 
+    function handleMessageSend(){
+        socket.emit("room1 chat message", document.getElementById("chat-input").value)
+    }
 
-    socket.on('message', (oui) => {
-        alert(oui)
-    })
 
 
 </script>

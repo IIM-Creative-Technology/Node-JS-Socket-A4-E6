@@ -11,7 +11,14 @@ io.on("connection", (socket) => {
   socket.on("joinRoom",  () => {
     socket.join("room1");
     io.sockets.in("room1").emit('message','Someone joined the room');
+    // io.sockets.adapter.rooms Lister les rooms
   })
+
+  socket.on('room1 chat message', function (msg) {
+    console.log(msg)
+    io.to("room1").emit('chat message', msg);
+  });
+
 });
 
 app.use("/user", user);
