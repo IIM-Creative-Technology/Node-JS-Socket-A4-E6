@@ -21,6 +21,8 @@ A mettre à la racine du projet :
 ```npm i```  
 ```npm start```
 
+***DISCLAIMER : npm start doesn't work on windows we are exploring a fix to solve this before we swap our project. You need to create a new script in package.json like startwindows. Then inside you need to try to use ```set DATABASE_URL=.... && nodemon ./app/app.js```***
+
 ## Test
 
 A mettre à la racine du projet :
