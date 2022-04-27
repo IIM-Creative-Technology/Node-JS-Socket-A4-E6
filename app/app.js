@@ -1,26 +1,29 @@
 const express = require("express");
-const { Client } = require("pg");
+const app = express();
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+const httpServer = createServer(app);
+const io = new Server(httpServer);
 const user = require("./routes/user");
 
-const app = express();
-const localhost = "127.0.0.1";
-const port = 3000;
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+io.on("connection", (socket) => {
+  console.log(`Connecté au client ${socket.id}`);
 });
-
-client.connect();
 
 app.use("/user", user);
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "./assets/template/html/index.html");
+io.on("connection", (socket) => {
+  socket.on("hello", (arg) => {
+    console.log(arg); // world
+  });
 });
 
-app.listen(process.env.PORT || port, () => {
-  console.log(`Example app listening on : http://${localhost}:${port}`);
+
+
+app.get("/socket", (req, res) => {
+  res.sendFile(__dirname + "/socketio/index.html");
 });
+
+
+httpServer.listen(3000);
+
