@@ -17,6 +17,16 @@
 <button onclick="handleclick()">Rejoindre une room</button>
 
 
+<div>
+    <span id="information"></span>
+    <h3>Chat</h3>
+    <textarea>
+
+    </textarea>
+
+</div>
+
+
 <!-- CREATION SOCKET -->
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -33,8 +43,8 @@
     });
 
 
-    socket.on('message', (socket) => {
-        console.log(socket)
+    socket.on('message', (oui) => {
+        alert(oui)
     })
 
 
