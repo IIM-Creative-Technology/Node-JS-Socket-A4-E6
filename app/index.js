@@ -1,10 +1,15 @@
 const express = require("express");
-const index = express();
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const httpServer = createServer(index);
+const app = express();
+const httpServer = createServer(app);
 const io = new Server(httpServer);
 const user = require("./routes/user");
+const uploadRoutes = require("./routes/upload");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+const path = require("path")
+
 
 io.on("connection", (socket) => {
   socket.on("joinRoom",  () => {
@@ -17,12 +22,14 @@ io.on("connection", (socket) => {
   });
 });
 
-index.use("/user", user);
+app.use("/user", user);
+app.use("/upload", uploadRoutes);
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/upload/index.html");
+});
 
-index.get("/socket", (req, res) => {
+app.get("/socket", (req, res) => {
   res.sendFile(__dirname + "/socketio/index.html");
 });
 
 httpServer.listen(process.env.EXPRESS_PORT || 3000);
-
-
