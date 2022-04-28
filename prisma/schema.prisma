@@ -10,11 +10,16 @@ datasource db {
   url      = env("DATABASE_URL_SSL")
 }
 
-model Users {
+model users {
   id      Int      @id @default(autoincrement())
   email   String   @unique
   first_name    String?
   last_name    String?
   password    String
   role    String[]
+}
+
+model images {
+  id      Int      @id @default(autoincrement())
+  name     String
 }

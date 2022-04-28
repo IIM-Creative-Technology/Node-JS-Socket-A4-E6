@@ -17,7 +17,7 @@ const client = new pg.Client(config);
 client.connect(function (err) {
     if (err)
         throw err;
-    client.query("SELECT * FROM test", [], function (err, result) {
+    client.query("SELECT * FROM users", [], function (err, result) {
         if (err)
             throw err;
 
@@ -28,8 +28,6 @@ client.connect(function (err) {
         });
     });
 });
-
-const user = require("./routes/user");
 
 const app = express();
 const { createServer } = require("http");

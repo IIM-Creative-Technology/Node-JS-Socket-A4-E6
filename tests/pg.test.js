@@ -38,14 +38,14 @@ describe("Cient should connect to database and run native sql to it", () => {
 describe("Prisma should connect to database and run create, insert, select, update, delete", () => {
   test('Check connection to database', async () => {
     let user = {
-      email : 'emailtest@gmail.com',
+      email : (Math.random() + 1).toString(36).substring(7) + '@gmail.com',
       first_name : 'John',
       last_name : 'Doe',
       password : 'password',
       role : ['user'],
     }
-    const create = await prismaClient.user.create({data: user})
-    const find = await prismaClient.user.findUnique({
+    const create = await prismaClient.users.create({data: user})
+    const find = await prismaClient.users.findUnique({
       where: {
         email: 'emailtest@gmail.com',
       },
