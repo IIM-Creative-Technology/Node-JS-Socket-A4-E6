@@ -1,8 +1,10 @@
 require('dotenv').config()
 const pg = require("pg");
-const fs = require('fs');
 const postgresqlUri = process.env.DATABASE_URL
 const conn = new URL(postgresqlUri);
+const { PrismaClient } = require('@prisma/client')
+const prismaClient = new PrismaClient();
+
 conn.search = conn.query = "";
 const config = {
   connectionString: conn.href,
@@ -31,5 +33,23 @@ describe("Cient should connect to database and run native sql to it", () => {
       });
     });
   });
+})
 
+describe("Prisma should connect to database and run create, insert, select, update, delete", () => {
+  test('Check connection to database', async () => {
+    let user = {
+      email : 'emailtest@gmail.com',
+      first_name : 'John',
+      last_name : 'Doe',
+      password : 'password',
+      role : ['user'],
+    }
+    const create = await prismaClient.user.create({data: user})
+    const find = await prismaClient.user.findUnique({
+      where: {
+        email: 'emailtest@gmail.com',
+      },
+    })
+    expect(find.first_name).toBe('John');
+  });
 })
