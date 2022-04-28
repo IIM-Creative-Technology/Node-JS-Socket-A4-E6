@@ -23,6 +23,6 @@ index.get("/socket", (req, res) => {
   res.sendFile(__dirname + "/socketio/index.html");
 });
 
-httpServer.listen(3000);
+httpServer.listen(process.env.EXPRESS_PORT || 3000);
 
 
