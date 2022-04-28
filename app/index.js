@@ -6,9 +6,6 @@ const httpServer = createServer(app);
 const io = new Server(httpServer);
 const user = require("./routes/user");
 const uploadRoutes = require("./routes/upload");
-const multer = require("multer");
-const upload = multer({ dest: "./app/uploads/" });
-const path = require("path")
 
 io.on("connection", (socket) => {
   socket.on("joinRoom",  () => {
