@@ -1,36 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Tuto WebSocket avec Socket.io et NodeJS par PracticalProgramming.fr</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tuto WebSocket avec Socket.io et NodeJS par PracticalProgramming.fr</title>
+  <style>
+
+      #dialog-container {
+          width: 60%;
+          margin: auto;
+          background: rgba(128, 128, 128, 0.3);
+      }
+
+      .left span, .right span {
+          border-top: 1px solid rgba(0, 0, 0, 0.2);
+          margin: 0.5rem 0;
+      }
+
+      .left, .right {
+          width: fit-content;
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          margin: 1rem 0;
+      }
+
+      .left {
+          background-color: powderblue;
+      }
+
+      .right {
+          margin-left: auto;
+          background-color: red;
+      }
+  </style>
 </head>
 
 <body>
-<H1>Hello</H1>
-<ul id="list">
-    <li>Premier élément</li>
-</ul>
+<div>
+  <span id="information" style="color: red"> </span>
+  <h3>Chat</h3>
+  <div id="dialog-container">
+  </div>
+  <label for="chat-input"></label>
+  <input id="chat-input" type="text" onchange="FocusManager()">
+  <button onclick="handleMessageSend()">Envoyer</button>
+</div>
 
-<label for="oui">Label</label>
-<input type="text" id="oui" onchange="handleChange(this)">
 
-
-<!-- CREATION SOCKET -->
 <script src="/socket.io/socket.io.js"></script>
 <script>
+  const socket = io();
 
-    const socket = io();
+  socket.on("connect", () => socket.emit("joinRoom", "oui"));
+  socket.on("welcome", ({
+                          socketId,
+                          msg
+                        }) => socketId !== socket.id ? document.getElementById("information").innerText = msg : document.getElementById("information").innerText = "You joined the room");
+  handleMessageSend = () => socket.emit("room1 chat message", {
+    socketId: socket.id,
+    msg: document.getElementById("chat-input").value
+  });
 
-    function handleChange({value}) {
-        socket.to("some room").emit("hello", "value");
-    }
+  socket.on("room callback", callback => {
+    let element = document.getElementById("dialog-container");
+    let tag = document.createElement("div");
+    tag.classList.add(callback.socketId !== socket.id ? "left" : "right");
+    let text = document.createTextNode(callback.msg);
+    tag.appendChild(text);
+    element.appendChild(tag);
+    let span = document.createElement("span");
+    let spanText = document.createTextNode(callback.socketId);
+    span.appendChild(spanText);
+    element.appendChild(tag);
+    tag.appendChild(span);
+  });
 
-    socket.on("connect", () => {
-        console.log(socket); // x8WIv7-mJelg7on_ALbx
-    });
-
-
+  FocusManager = () => document.addEventListener("keypress", (event) => event.key === "Enter" && handleMessageSend());
 </script>
 
 <!-- FIN CODE SOCKET -->
