@@ -10,6 +10,7 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const path = require("path")
 
+app.use(express.static('public'))
 
 io.on("connection", (socket) => {
   socket.on("joinRoom",  () => {
